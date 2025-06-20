@@ -1,0 +1,164 @@
+# yaml-language-server: $schema=https://docs.ludus.cloud/schemas/range-config.json
+
+# i just want to create a cyber range with different typeos of asset
+# i need to install 6 server windows and 2 clients windows
+# server: dc, file, web, mail, database, adfs
+# client: ws1, ws2, linux1, centos1
+# everything is connected trough a router with vlan and firewall
+
+ludus:
+  - vm_name: "{{ range_id }}.dc"
+    hostname: dc
+    template: windows-server-2022
+    vlan: 10
+    ip_last_octet: 100
+    force_ip: true
+    ram_gb: 4
+    cpus: 2
+    windows:
+      sysprep: true
+      gpos:
+        - anon_share_access
+    domain:
+      fqdn: "{{ range_id }}.ludus.cloud"
+      role: primary-dc
+    testing:
+      snapshot: true
+      block_internet: true
+    roles:
+      - domain-controller
+    role_vars:
+      domain_controller:
+        domain_name: "{{ range_id }}.ludus.cloud"
+        domain_admin_password: "{{ range_id }}-admin"
+        domain_admin_username: "{{ range_id }}-admin"
+        domain_admin_email: "{{ range_id }}-admin@{{ range_id }}.ludus.cloud"
+        domain_admin_first_name: "{{ range_id }}"
+
+  - vm_name: "{{ range_id }}.file"
+    hostname: file
+    template: windows-server-2022
+    vlan: 10
+    ip_last_octet: 101
+    force_ip: true
+    ram_gb: 4
+    cpus: 2
+    windows:
+      sysprep: true
+      gpos:
+        - anon_share_access
+    roles:
+      - file-server
+
+  - vm_name: "{{ range_id }}.web"
+    hostname: web
+    template: windows-server-2022
+    vlan: 10
+    ip_last_octet: 102
+    force_ip: true
+    ram_gb: 4
+    cpus: 2
+    windows:
+      sysprep: true
+      gpos:
+        - anon_share_access
+    roles:
+      - web-server
+
+  - vm_name: "{{ range_id }}.mail"
+    hostname: mail
+    template: windows-server-2022
+    vlan: 10
+    ip_last_octet: 103
+    force_ip: true
+    ram_gb: 4
+    cpus: 2
+    windows:
+      sysprep: true
+      gpos:
+        - anon_share_access
+    roles:
+      - mail-server
+
+  - vm_name: "{{ range_id }}.database"
+    hostname: database
+    template: windows-server-2022
+    vlan: 10
+    ip_last_octet: 104
+    force_ip: true
+    ram_gb: 4
+    cpus: 2
+    windows:
+      sysprep: true
+      gpos:
+        - anon_share_access
+    roles:
+      - database-server
+  - vm_name: "{{ range_id }}.adfs"
+    hostname: adfs
+    template: windows-server-2022
+    vlan: 10
+    ip_last_octet: 105
+    force_ip: true
+    ram_gb: 4
+    cpus: 2
+    windows:
+      sysprep: true
+      gpos:
+        - anon_share_access
+    roles:
+      - adfs-server
+
+  - vm_name: "{{ range_id }}.ws1"
+    hostname: ws1
+    template: windows-10
+    vlan: 20
+    ip_last_octet: 100
+    force_ip: true
+    ram_gb: 2
+    cpus: 2
+    windows:
+      sysprep: true
+      gpos:
+        - anon_share_access
+
+  - vm_name: "{{ range_id }}.ws2"
+    hostname: ws2
+    template: windows-10
+    vlan: 20
+    ip_last_octet: 101
+    force_ip: true
+    ram_gb: 2
+    cpus: 2
+    windows:
+      sysprep: true
+      gpos:
+        - anon_share_access 
+
+  - vm_name: "{{ range_id }}.linux1"
+    hostname: linux1
+    template: ubuntu-22.04
+    vlan: 30
+    ip_last_octet: 100
+    force_ip: true
+    ram_gb: 2
+    cpus: 2
+    linux: true
+
+  - vm_name: "{{ range_id }}.centos1"
+    hostname: centos1
+    template: centos-8
+    vlan: 30
+    ip_last_octet: 101
+    force_ip: true
+    ram_gb: 2
+    cpus: 2
+    linux: true
+
+
+
+  - vm_name: "{{ range_id }}.router"
+    roles:
+      - router
+
+  - vm_name: "{{ range_id }}.firewall"
