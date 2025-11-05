@@ -1,0 +1,27 @@
+ludus:
+  - vm_name: "{{ range_id }}-ad-dc-win2022-server-x64-1"
+    hostname: "{{ range_id }}-DC01-2022"
+    template: win2022-server-x64-template
+    vlan: 10
+    ip_last_octet: 11
+    ram_gb: 6
+    cpus: 4
+    windows:
+      sysprep: true
+    domain:
+      fqdn: adcslab.domain
+      role: primary-dc
+    roles:
+      - badsectorlabs.ludus_adcs
+
+  - vm_name: "{{ range_id }}-kali"
+    hostname: "{{ range_id }}-kali"
+    template: kali-x64-desktop-template
+    vlan: 10
+    ip_last_octet: 100
+    ram_gb: 8
+    cpus: 4
+    linux: true
+    testing:
+      snapshot: false
+      block_internet: false

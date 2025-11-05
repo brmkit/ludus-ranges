@@ -1,0 +1,8 @@
+{
+  "name": "ludus-dev",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "remoteUser": "vscode",
+  "runArgs": ["--env-file",".devcontainer/devcontainer.env"]
+}
