@@ -87,8 +87,10 @@ ludus:
     ip_last_octet: 100
     ram_gb: 4
     cpus: 2
-    windows:
-      sysprep: false
+    linux: true
+    testing:
+      snapshot: false
+      block_internet: false
     roles:
       - Beardhammer.ludus_rustdesk
     role_vars:
