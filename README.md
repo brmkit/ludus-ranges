@@ -13,5 +13,6 @@ I use this repo as a base to start my training/test environment, the logic is pr
    ```
 2. Open the project in VSCode.
 3. Use Ludus directly inside the container's shell.
+4. [OPTIONAL](https://github.com/tailscale/codespace)
 
 That's it. Containers keep everything clean and... contained.

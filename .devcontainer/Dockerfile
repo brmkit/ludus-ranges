@@ -8,8 +8,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     bash \
     nano \
+    net-tools \
     python3 \
     python3-pip \
+    openssh-client \
+    dnsutils \
     bash-completion \
     git \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -18,10 +21,6 @@ RUN curl -s https://ludus.cloud/install -o /tmp/ludus-install.sh \
     # force completions_response to y
     && sed -i 's/\(read .*completions_response.*\)/completions_response="y"/' /tmp/ludus-install.sh \
     && bash /tmp/ludus-install.sh
-
-RUN useradd -m -s /bin/bash vscode
-USER vscode
-WORKDIR /home/vscode
 
 # add completions to bashrc
 RUN echo "source /usr/share/bash-completion/completions/ludus" >> .bashrc
