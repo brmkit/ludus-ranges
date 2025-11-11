@@ -4,7 +4,7 @@
     "dockerfile": "Dockerfile"
   },
   "remoteUser": "root",
-  "runArgs": ["--env-file",".devcontainer/devcontainer.env"],
+  "runArgs": [ "--env-file", ".devcontainer/devcontainer.env" ],
   "features": {
     "ghcr.io/tailscale/codespace/tailscale:latest": {}
   }

@@ -1,6 +1,5 @@
 # ludus-ranges
-
-A minimal *(and personal)* setup for running **Ludus CLI** inside a containerized development environment to easily manage Ludus ranges.
+A minimal *(and personal)* setup for running **Ludus CLI** inside a containerized development environment useful to easily manage Ludus ranges.
 
 I use this repo as a base to start my training/test environment, the logic is pretty simple. I'm sharing it in case others find it useful.
 

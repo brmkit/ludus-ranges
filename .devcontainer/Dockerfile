@@ -23,6 +23,9 @@ RUN curl -s https://ludus.cloud/install -o /tmp/ludus-install.sh \
     && bash /tmp/ludus-install.sh
 
 # add completions to bashrc
-RUN echo "source /usr/share/bash-completion/completions/ludus" >> .bashrc
+RUN echo "source /usr/share/bash-completion/completions/ludus" >> /root/.bashrc
+
+COPY helper.sh /root/.helper.sh
+RUN echo '[ -f ~/.helper.sh ] && source ~/.helper.sh' >> /root/.bashrc
 
 ENV PATH="/usr/local/bin:${PATH}"
