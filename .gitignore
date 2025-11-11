@@ -1,3 +1,4 @@
 .devcontainer/devcontainer.env
 *.conf
 *rdp*
+*.DS_Store
