@@ -2,3 +2,5 @@
 *.conf
 *rdp*
 *.DS_Store
+ludus_guacamole_gateway
+bb/bb-lab.yml

@@ -14,6 +14,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     openssh-client \
     dnsutils \
     bash-completion \
+    wireguard \
+    iproute2 \
     git \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
